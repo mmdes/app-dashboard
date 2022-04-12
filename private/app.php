@@ -53,17 +53,14 @@ class Bd{
     public function __construct(Conexao $conexao, Dashboard $dashboard){
         $this->conexao = $conexao->conectar();
     }
+}
 
-    
     //Lógica do script
     $dashboard = new Dashboard();
 
     $conexao = new Conexao();
 
     $bd = new Bd($conexao, $dashboard);
-
-
-}
 
 
 ?>
