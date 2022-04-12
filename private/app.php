@@ -54,6 +54,8 @@ class Bd{
         $this->conexao = $conexao->conectar();
     }
 
+    
+    //Lógica do script
     $dashboard = new Dashboard();
 
     $conexao = new Conexao();
