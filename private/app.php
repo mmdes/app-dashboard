@@ -1,4 +1,6 @@
 <?php
+
+//Classe dashboard
 class Dashboard{
 
     public $data_inicio;
@@ -16,6 +18,7 @@ class Dashboard{
     }
 }
 
+//Classe conexão
 class Conexao{
     private $host = 'localhost';
     private $dbname = 'dashboard';
@@ -25,7 +28,7 @@ class Conexao{
     public function conectar(){
         try{
             $conexao = new PDO(
-                "mysqli:host=$this->host;dbname=$this->dbname",
+                "mysql:host=$this->host;dbname=$this->dbname",
                 "$this->user",
                 "$this->pass"
             );
