@@ -52,6 +52,23 @@ class Bd{
 
     public function __construct(Conexao $conexao, Dashboard $dashboard){
         $this->conexao = $conexao->conectar();
+        $this->dashboard = $dashboard;
+    }
+    public function getNumeroVendas(){
+        $query = '
+                select 
+                    count(*) as numero_vendas 
+                from 
+                    tb_vendas 
+                where 
+                    data_venda between :data_inicio and :data_fim';
+
+        $stmt = $this->conexao->prepare($query); //retorna pdo statement
+        $stmt->bindValue(':data_inicio','2018-08-01');
+        $stmt->bindValue(':data_fim','2018-08-31');
+        $stmt->execute();
+        //Resultado obtido da query seja retornado como um objeto
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }
 
@@ -61,6 +78,7 @@ class Bd{
     $conexao = new Conexao();
 
     $bd = new Bd($conexao, $dashboard);
+    print_r($bd->getNumeroVendas());
 
 
 ?>
