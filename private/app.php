@@ -64,11 +64,30 @@ class Bd{
                     data_venda between :data_inicio and :data_fim';
 
         $stmt = $this->conexao->prepare($query); //retorna pdo statement
-        $stmt->bindValue(':data_inicio','2018-08-01');
-        $stmt->bindValue(':data_fim','2018-08-31');
+        $stmt->bindValue(':data_inicio', $this->dashboard->__get('data_inicio'));
+        $stmt->bindValue(':data_fim', $this->dashboard->__get('data_fim'));
         $stmt->execute();
         //Resultado obtido da query seja retornado como um objeto
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        //retornando apenas o atributo numero_vendas
+        return $stmt->fetch(PDO::FETCH_OBJ)->numero_vendas;
+    }
+    public function getTotalVendas(){
+        //soma da coluna total 
+        $query = '
+                select 
+                    SUM(total) as total_vendas 
+                from 
+                    tb_vendas 
+                where 
+                    data_venda between :data_inicio and :data_fim';
+
+        $stmt = $this->conexao->prepare($query); //retorna pdo statement
+        $stmt->bindValue(':data_inicio', $this->dashboard->__get('data_inicio'));
+        $stmt->bindValue(':data_fim', $this->dashboard->__get('data_fim'));
+        $stmt->execute();
+        //Resultado obtido da query seja retornado como um objeto
+        //retornando apenas o atributo numero_vendas
+        return $stmt->fetch(PDO::FETCH_OBJ)->total_vendas;
     }
 }
 
@@ -77,8 +96,17 @@ class Bd{
 
     $conexao = new Conexao();
 
-    $bd = new Bd($conexao, $dashboard);
-    print_r($bd->getNumeroVendas());
+    //setando valores através do método mágico __set()
+    $dashboard->__set('data_inicio','2018-08-01');
+    $dashboard->__set('data_fim','2018-10-31');
 
+
+    $bd = new Bd($conexao, $dashboard);
+
+    $dashboard->__set('numeroVendas', $bd->getNumeroVendas());
+    $dashboard->__set('totalVendas', $bd->getTotalVendas());
+    print_r($dashboard);
+
+   
 
 ?>
