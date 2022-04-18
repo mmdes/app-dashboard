@@ -23,4 +23,25 @@ $(document).ready(() => {
 
     })
 
+    //Implementação do método ajax
+    //selecionar a competência (mes/ano) dispara a requisição assíncrona
+
+    $('#competencia').on('change', e =>{
+        //console.log($(e.target).val())
+        //recebe um objeto literal
+        let competencia = $(e.target).val()
+        //método, url, dados, sucesso, erro
+        $.ajax({
+            type: 'GET',
+            url: 'app.php',
+            data:`competencia=${competencia}`, //x-www-form-urlenconded
+            dataType:'json',
+            success: dados => {
+                $('#numeroVendas').html(dados.numeroVendas)
+                $('#totalVendas').html(dados.totalVendas)
+                //console.log(dados.numeroVendas, dados.totalVendas)
+            },
+            error: erro => {console.log(erro)}
+        })
+    })
 })

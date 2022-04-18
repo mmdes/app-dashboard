@@ -96,17 +96,25 @@ class Bd{
 
     $conexao = new Conexao();
 
+    $competencia = explode('-', $_GET['competencia']);
+    $ano = $competencia[0];
+    $mes = $competencia[1];
+
+    //descobrir quantos dias tem o determinado mês do determinado ano
+    $dias_do_mes = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
+
     //setando valores através do método mágico __set()
-    $dashboard->__set('data_inicio','2018-08-01');
-    $dashboard->__set('data_fim','2018-10-31');
+    $dashboard->__set('data_inicio', $ano.'-'.$mes.'-01');
+    $dashboard->__set('data_fim', $ano.'-'.$mes.'-'.$dias_do_mes);
 
 
     $bd = new Bd($conexao, $dashboard);
 
     $dashboard->__set('numeroVendas', $bd->getNumeroVendas());
     $dashboard->__set('totalVendas', $bd->getTotalVendas());
-    print_r($dashboard);
+    //encaminha objeto transcrito em json
+    echo json_encode($dashboard);
 
-   
+    
 
 ?>
