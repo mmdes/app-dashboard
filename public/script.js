@@ -42,8 +42,9 @@ $(document).ready(() => {
                 $('#numeroVendas').html(dados.numeroVendas)
                 $('#totalVendas').html(dados.totalVendas)
                 $('#totalClientesAtivos').html(dados.totalClientesAtivos)
+                $('#totalClientesInativos').html(dados.totalClientesInativos)
                 
-                console.log(dados.totalClientesAtivos)
+                //console.log(dados.totalClientesAtivos)
             },
             error: erro => {console.log(erro)}
         })

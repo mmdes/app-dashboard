@@ -9,6 +9,7 @@ class Dashboard{
     public $numeroVendas;
     public $totalVendas;
     public $totalClientesAtivos;
+    public $totalClientesInativos;
 
     public function __get($atributo){
         return $this->$atributo;
@@ -103,6 +104,17 @@ class Bd{
         return $stmt->fetch(PDO::FETCH_OBJ)->total_clientes_ativos;
     }
 
+    public function getTotalClientesInativos(){
+        //soma da coluna total 
+        $query = 'select count(*) as total_clientes_inativos from tb_clientes where cliente_ativo = 0';
+
+        $stmt = $this->conexao->prepare($query); 
+        
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ)->total_clientes_inativos;
+    }
+
 }
 
     //Lógica do script
@@ -127,6 +139,7 @@ $bd = new Bd($conexao, $dashboard);
 $dashboard->__set('numeroVendas', $bd->getNumeroVendas());
 $dashboard->__set('totalVendas', $bd->getTotalVendas());
 $dashboard->__set('totalClientesAtivos', $bd->getTotalClientesAtivos());
+$dashboard->__set('totalClientesInativos', $bd->getTotalClientesInativos());
 
 //encaminha objeto transcrito em json
 echo json_encode($dashboard);
