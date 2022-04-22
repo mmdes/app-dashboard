@@ -26,6 +26,8 @@ $(document).ready(() => {
     //Implementação do método ajax
     //selecionar a competência (mes/ano) dispara a requisição assíncrona
 
+
+
     $('#competencia').on('change', e =>{
         //console.log($(e.target).val())
         //recebe um objeto literal
@@ -39,9 +41,12 @@ $(document).ready(() => {
             success: dados => {
                 $('#numeroVendas').html(dados.numeroVendas)
                 $('#totalVendas').html(dados.totalVendas)
-                //console.log(dados.numeroVendas, dados.totalVendas)
+                $('#totalClientesAtivos').html(dados.totalClientesAtivos)
+                
+                console.log(dados.totalClientesAtivos)
             },
             error: erro => {console.log(erro)}
         })
     })
+
 })
