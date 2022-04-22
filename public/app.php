@@ -1,3 +1,4 @@
+
 <?php
 
 //Classe dashboard
@@ -92,28 +93,28 @@ class Bd{
 }
 
     //Lógica do script
-    $dashboard = new Dashboard();
+$dashboard = new Dashboard();
 
-    $conexao = new Conexao();
+$conexao = new Conexao();
 
-    $competencia = explode('-', $_GET['competencia']);
-    $ano = $competencia[0];
-    $mes = $competencia[1];
+$competencia = explode('-', $_GET['competencia']);
+$ano = $competencia[0];
+$mes = $competencia[1];
 
-    //descobrir quantos dias tem o determinado mês do determinado ano
-    $dias_do_mes = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
+//descobrir quantos dias tem o determinado mês do determinado ano
+$dias_do_mes = cal_days_in_month(CAL_GREGORIAN, $mes, $ano);
 
-    //setando valores através do método mágico __set()
-    $dashboard->__set('data_inicio', $ano.'-'.$mes.'-01');
-    $dashboard->__set('data_fim', $ano.'-'.$mes.'-'.$dias_do_mes);
+//setando valores através do método mágico __set()
+$dashboard->__set('data_inicio', $ano.'-'.$mes.'-01');
+$dashboard->__set('data_fim', $ano.'-'.$mes.'-'.$dias_do_mes);
 
 
-    $bd = new Bd($conexao, $dashboard);
+$bd = new Bd($conexao, $dashboard);
 
-    $dashboard->__set('numeroVendas', $bd->getNumeroVendas());
-    $dashboard->__set('totalVendas', $bd->getTotalVendas());
-    //encaminha objeto transcrito em json
-    echo json_encode($dashboard);
+$dashboard->__set('numeroVendas', $bd->getNumeroVendas());
+$dashboard->__set('totalVendas', $bd->getTotalVendas());
+//encaminha objeto transcrito em json
+echo json_encode($dashboard);
 
     
 
