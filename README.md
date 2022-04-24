@@ -1,7 +1,7 @@
  
 # Sobre o projeto
 
-Dashboard app é uma aplicação frontend que consome dados do backend através de requisições assíncronas, trabalhando com Ajax a partir do JQuery.
+Dashboard app é uma aplicação front-end que consome dados do back-end através de requisições assíncronas, trabalhando com Ajax a partir do JQuery.
 
 
 ## Página principal
@@ -12,10 +12,10 @@ Dashboard app é uma aplicação frontend que consome dados do backend através 
 
 
 # Tecnologias utilizadas
-## Back end
+## Back-end
 - PHP
 - SQL
-## Front end
+## Front-end
 - HTML / CSS / JS 
 - JQuery / Bootstrap
 
