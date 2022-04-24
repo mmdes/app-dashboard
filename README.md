@@ -11,6 +11,7 @@ Dashboard app é uma aplicação frontend que consome dados do backend através 
 # Tecnologias utilizadas
 ## Back end
 - PHP
+- SQL
 ## Front end
 - HTML / CSS / JS 
 - JQuery / Bootstrap
