@@ -29,7 +29,7 @@ Dashboard app é uma aplicação front-end que consome dados do back-end atravé
 git clone https://github.com/mmdes/dashboard-app
 
 ```
-- Criar o banco de dados utilizando querys.sql
+- Construir o banco de dados utilizando querys.sql
 
 - Mover pasta pasta private fora da pasta publica (ajustar os endereços para os arquivos)
 
